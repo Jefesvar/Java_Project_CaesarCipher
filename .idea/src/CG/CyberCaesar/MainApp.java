@@ -6,7 +6,7 @@ public class MainApp {
     }
 
     public void SetMenu(){
-
+        System.out.println("");
     }
 
 }
