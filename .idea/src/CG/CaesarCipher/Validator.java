@@ -1,5 +1,7 @@
 package CG.CaesarCipher;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class Validator {
     public  boolean key(int key, char[] alphabet){
@@ -7,12 +9,9 @@ public class Validator {
         return validKey;
     }
 
-    public boolean file(String filePath){
+    public boolean file(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
-        System.out.println(filePath);
         boolean fileExist = file.canRead() && file.canWrite();
-        System.out.println(file.canRead());
-        System.out.println(file.canWrite());
         return fileExist;
     }
 }

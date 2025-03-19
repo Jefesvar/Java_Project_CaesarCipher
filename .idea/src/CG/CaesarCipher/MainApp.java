@@ -29,18 +29,19 @@ public class MainApp {
                     if(!validator.file(menu.pathFile())){   menu.pathFileInvalido();continue;  }
                     if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
 
-
                     FileManager fileManager = new FileManager(menu.pathFile);
                     String line;
                     while ((line = fileManager.readFile()) != null){
                         System.out.println(line);
                     }
-
+                    continue;
 
                 case 2:
                     menu.close();
+                    continue;
                 case 3:
                     menu.close();
+                    continue;
                 default:
                     menu.noValido();
                     continue;

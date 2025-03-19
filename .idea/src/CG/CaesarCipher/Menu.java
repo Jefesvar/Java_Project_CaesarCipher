@@ -39,15 +39,15 @@ public class Menu {
     }
 
     public void pathFileInvalido(){
-        sysout.println("ARCHIVO NO ENCONTRADO");
+        sysout.println("ARCHIVO NO ENCONTRADO\n");
     }
 
     public void keyInvalido(){
-        sysout.println("LLAVE/KEY NO VALIDO");
+        sysout.println("LLAVE/KEY NO VALIDO\n");
     }
 
     public void noValido(){
-        sysout.println("COMANDO NO VALIDO");
+        sysout.println("COMANDO NO VALIDO\n");
     }
 
     public void close(){
