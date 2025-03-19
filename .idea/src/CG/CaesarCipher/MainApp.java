@@ -1,30 +1,58 @@
 package CG.CaesarCipher;
-import java.util.Scanner;
 
-import java.io.PrintStream;
-import java.util.Scanner;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainApp {
 
-    static PrintStream sysout = System.out;
-    static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
 
-        showMenu();
-        scanner.nextInt();
+    public static void main(String[] args) throws IOException {
 
+        // inicializar objetos
+
+        Menu menu = new Menu();
+        Cipher cipher = new Cipher(ALPHABET);
+
+
+        // programa
+
+        while (menu.activo){
+            menu.menuPrincipal();
+
+            switch (menu.numSelector()){
+                case 1:
+
+                    Validator validator = new Validator();
+                    if(!validator.file(menu.pathFile())){   menu.pathFileInvalido();continue;  }
+                    if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
+
+
+                    FileManager fileManager = new FileManager(menu.pathFile);
+                    String line;
+                    while ((line = fileManager.readFile()) != null){
+                        System.out.println(line);
+                    }
+
+
+                case 2:
+                    menu.close();
+                case 3:
+                    menu.close();
+                default:
+                    menu.noValido();
+                    continue;
+            }
+
+        }
 
     }
 
 
-    public static void showMenu(){
-        sysout.println("Bienvenido al Cifrado Caesar");
-        sysout.println("Elije una opción (1-3):");
-        sysout.println("1. Cifrar");
-        sysout.println("2. Descifrar");
-        sysout.println("3. Salir");
-        sysout.println("Por favor, elige: ");
-    }
+
+
+
 
 }
