@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class Validator {
     public  boolean key(int key, char[] alphabet){
-        boolean validKey = 1 <= key && key <= 31;
+        boolean validKey = 1 <= key && key <= 30;
         return validKey;
     }
 

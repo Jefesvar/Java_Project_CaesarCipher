@@ -8,6 +8,7 @@ public class MainApp {
 
 
     public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
+    public static final String RUTA = "C:\\Users\\jefes\\IdeaProjects\\Java_Project_Cyber_Caesar\\.idea\\src\\CG\\CaesarCipher\\";
 
     public static void main(String[] args) throws IOException {
 
@@ -24,16 +25,21 @@ public class MainApp {
 
             switch (menu.numSelector()){
                 case 1:
+                    System.out.println("- CIFRAR -");
 
                     Validator validator = new Validator();
-                    if(!validator.file(menu.pathFile())){   menu.pathFileInvalido();continue;  }
+                    if(!validator.file(RUTA + menu.pathFile())){   menu.pathFileInvalido();continue;  }
                     if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
 
-                    FileManager fileManager = new FileManager(menu.pathFile);
+                    FileManager fileManager = new FileManager(RUTA + menu.pathFile);
                     String line;
+                    menu.saveFile();
+                    fileManager.saveFile(RUTA + menu.saveFile + ".txt");
                     while ((line = fileManager.readFile()) != null){
-                        System.out.println(line);
+                        line = cipher.encrypt(line, menu.key);
+                        fileManager.writeFile(line);
                     }
+                    fileManager.close();
                     continue;
 
                 case 2:

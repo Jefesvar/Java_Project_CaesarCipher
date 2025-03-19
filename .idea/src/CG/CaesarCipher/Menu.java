@@ -8,6 +8,7 @@ public class Menu {
     public boolean activo = true;
     public int key = 0;
     public String pathFile = "";
+    public String saveFile;
 
     static PrintStream sysout = System.out;
     static Scanner scanner = new Scanner(System.in);
@@ -30,6 +31,13 @@ public class Menu {
         sysout.print("De la ruta del archivo: ");
         pathFile = scanner.next();
         return pathFile;
+    }
+
+    public String saveFile(){
+        sysout.println("Se guardara en FORMATO .txt");
+        sysout.print("De SOLO el nombre para guardar: ");
+        saveFile = scanner.next();
+        return saveFile;
     }
 
     public int key(){

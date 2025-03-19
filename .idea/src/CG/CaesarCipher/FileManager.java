@@ -4,6 +4,7 @@ import java.io.*;
 public class FileManager {
 
     BufferedReader bufferedReader;
+    BufferedWriter bufferedWriter;
 
     public boolean activo = false;
 
@@ -15,8 +16,18 @@ public class FileManager {
         return bufferedReader.readLine();
     }
 
-    public  void  writeFile(String content, String filePath){
+    public void saveFile(String filePath) throws IOException {
+        bufferedWriter =
+                new BufferedWriter(new FileWriter(filePath));
+    }
 
+    public  void  writeFile(String content) throws IOException {
+        bufferedWriter.write(content+"\n");
+    }
+
+    public void close() throws IOException {
+        bufferedReader.close();
+        bufferedWriter.close();
     }
 
 }
