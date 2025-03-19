@@ -8,12 +8,14 @@ public class Cipher {
         this.alphabet = alphabet;
     }
 
-    public void encript(){
-
+    public String encrypt(String text, int shift){
+        String encryptedText = "";
+        return encryptedText;
     }
 
-    public void descript(){
-
+    public String descrypt(String encryptedText, int shift){
+        String decryptedText = "";
+        return decryptedText;
     }
 
 
