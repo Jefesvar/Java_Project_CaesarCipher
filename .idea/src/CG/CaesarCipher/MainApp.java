@@ -27,7 +27,7 @@ public class MainApp {
 
                     if(validarFileKey()){continue;};
 
-                    //Prepara archivos para leer y guardar
+                    //Prepara archivos para leer, (encriptar o desencriptar) y guardar
 
                     encryptOrDencrypt("encrypt");
 
