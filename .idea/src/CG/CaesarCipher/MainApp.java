@@ -69,7 +69,7 @@ public class MainApp {
         menu.saveFile();
         fileManager.saveFile(RUTA + menu.saveFile + ".txt");
 
-        //Lee, Encripta y Guarda
+        //Lee, encriptar o desencriptar y Guarda
 
         Cipher cipher = new Cipher(ALPHABET);
 
