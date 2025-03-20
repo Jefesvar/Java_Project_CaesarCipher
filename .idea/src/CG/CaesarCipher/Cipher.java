@@ -29,6 +29,7 @@ public class Cipher {
     public String dencrypt(String encryptedText, int shift){
 
         creaNewAlphabet(shift);
+
         char[] oldChars = encryptedText.toCharArray();
         char[] newChars = new char[encryptedText.length()];
         for(int i=0 ; i <= oldChars.length-1; i++){
