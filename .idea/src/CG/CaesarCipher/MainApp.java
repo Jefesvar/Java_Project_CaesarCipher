@@ -10,13 +10,9 @@ public class MainApp {
     public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
     public static final String RUTA = "C:\\Users\\jefes\\IdeaProjects\\Java_Project_Cyber_Caesar\\.idea\\src\\CG\\CaesarCipher\\";
 
+    public static final Menu menu = new Menu();
+
     public static void main(String[] args) throws IOException {
-
-        // inicializar objetos
-
-        Menu menu = new Menu();
-        Cipher cipher = new Cipher(ALPHABET);
-
 
         // programa
 
@@ -25,50 +21,29 @@ public class MainApp {
 
             switch (menu.numSelector()){
                 case 1:
-                    System.out.println("- CIFRAR -");
+                    System.out.println("\n- CIFRAR -");
 
                     //Valida Key y File
 
-                    Validator validator = new Validator();
-                    if(!validator.file(RUTA + menu.pathFile())){   menu.pathFileInvalido();continue;  }
-                    if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
+                    if(validarFileKey()){continue;};
 
                     //Prepara archivos para leer y guardar
 
-                    FileManager fileManager = new FileManager(RUTA + menu.pathFile);
-                    menu.saveFile();
-                    fileManager.saveFile(RUTA + menu.saveFile + ".txt");
+                    encryptOrDencrypt("encrypt");
 
-                    //Lee, Encripta y Guarda
-
-                    String line;
-                    while ((line = fileManager.readFile()) != null){
-                        line = cipher.encrypt(line, menu.key);
-                        fileManager.writeFile(line);
-                    }
-                    fileManager.close();
                     continue;
 
                 case 2:
 
-                    Validator validator2 = new Validator();
-                    if(!validator2.file(RUTA + menu.pathFile())){   menu.pathFileInvalido();continue;  }
-                    if(!validator2.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
+                    System.out.println("\n- DESCIFRAR -");
+
+                    if(validarFileKey()){continue;};
 
                     //Prepara archivos para leer y guardar
 
-                    FileManager fileManager2 = new FileManager(RUTA + menu.pathFile);
-                    menu.saveFile();
-                    fileManager2.saveFile(RUTA + menu.saveFile + ".txt");
+                    encryptOrDencrypt("dencrypt");
 
-                    //Lee, Encripta y Guarda
 
-                    String line2;
-                    while ((line2 = fileManager2.readFile()) != null){
-                        line = cipher.dencrypt(line2, menu.key);
-                        fileManager2.writeFile(line);
-                    }
-                    fileManager2.close();
                     continue;
                 case 3:
                     menu.close();
@@ -77,14 +52,43 @@ public class MainApp {
                     menu.noValido();
                     continue;
             }
-
+            break;
         }
 
     }
 
+    public static boolean validarFileKey() throws FileNotFoundException {
+        Validator validator = new Validator();
+        if(!validator.file(RUTA + menu.pathFile())){   menu.pathFileInvalido(); return true;  }
+        if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido(); return true;   }
+        return false;
+    }
 
+    public static void encryptOrDencrypt(String process) throws IOException {
+        FileManager fileManager = new FileManager(RUTA + menu.pathFile);
+        menu.saveFile();
+        fileManager.saveFile(RUTA + menu.saveFile + ".txt");
 
+        //Lee, Encripta y Guarda
 
+        Cipher cipher = new Cipher(ALPHABET);
+
+        String line;
+        while ((line = fileManager.readFile()) != null){
+            switch (process){
+                case "encrypt":
+                    line = cipher.encrypt(line, menu.key);
+                    fileManager.writeFile(line);
+                    continue;
+                case "dencrypt":
+                    line = cipher.dencrypt(line, menu.key);
+                    fileManager.writeFile(line);
+                    continue;
+            }
+
+        }
+        fileManager.close();
+    }
 
 
 

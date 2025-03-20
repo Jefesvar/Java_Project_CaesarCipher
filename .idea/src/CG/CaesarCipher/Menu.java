@@ -13,7 +13,7 @@ public class Menu {
     static Scanner scanner = new Scanner(System.in);
 
     public void menuPrincipal() {
-        sysout.println("- MENU PRINCIPAL -");
+        sysout.println("\n- MENU PRINCIPAL -");
         sysout.println("Bienvenido al Cifrado Caesar");
         sysout.println("Elije una opción (1-3):");
         sysout.println("1. Cifrar");
@@ -33,7 +33,7 @@ public class Menu {
     }
 
     public String saveFile(){
-        sysout.println("Se guardara en FORMATO .txt");
+        sysout.println("\nSe guardara en FORMATO .txt");
         sysout.print("De SOLO el nombre para guardar: ");
         saveFile = scanner.next();
         return saveFile;
