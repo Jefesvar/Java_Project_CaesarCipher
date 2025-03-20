@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public boolean activo = true;
     public int key = 0;
     public String pathFile = "";
     public String saveFile;
@@ -60,7 +59,6 @@ public class Menu {
 
     public void close(){
         sysout.println("Bye");
-        activo = false;
     }
 
 }

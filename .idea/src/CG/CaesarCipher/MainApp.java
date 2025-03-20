@@ -20,21 +20,28 @@ public class MainApp {
 
         // programa
 
-        while (menu.activo){
+        while (true){
             menu.menuPrincipal();
 
             switch (menu.numSelector()){
                 case 1:
                     System.out.println("- CIFRAR -");
 
+                    //Valida Key y File
+
                     Validator validator = new Validator();
                     if(!validator.file(RUTA + menu.pathFile())){   menu.pathFileInvalido();continue;  }
                     if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
 
+                    //Prepara archivos para leer y guardar
+
                     FileManager fileManager = new FileManager(RUTA + menu.pathFile);
-                    String line;
                     menu.saveFile();
                     fileManager.saveFile(RUTA + menu.saveFile + ".txt");
+
+                    //Lee, Encripta y Guarda
+
+                    String line;
                     while ((line = fileManager.readFile()) != null){
                         line = cipher.encrypt(line, menu.key);
                         fileManager.writeFile(line);
@@ -43,11 +50,29 @@ public class MainApp {
                     continue;
 
                 case 2:
-                    menu.close();
+
+                    Validator validator2 = new Validator();
+                    if(!validator2.file(RUTA + menu.pathFile())){   menu.pathFileInvalido();continue;  }
+                    if(!validator2.key(menu.key(),ALPHABET)){    menu.keyInvalido();continue;   }
+
+                    //Prepara archivos para leer y guardar
+
+                    FileManager fileManager2 = new FileManager(RUTA + menu.pathFile);
+                    menu.saveFile();
+                    fileManager2.saveFile(RUTA + menu.saveFile + ".txt");
+
+                    //Lee, Encripta y Guarda
+
+                    String line2;
+                    while ((line2 = fileManager2.readFile()) != null){
+                        line = cipher.dencrypt(line2, menu.key);
+                        fileManager2.writeFile(line);
+                    }
+                    fileManager2.close();
                     continue;
                 case 3:
                     menu.close();
-                    continue;
+                    break;
                 default:
                     menu.noValido();
                     continue;
@@ -56,6 +81,7 @@ public class MainApp {
         }
 
     }
+
 
 
 
