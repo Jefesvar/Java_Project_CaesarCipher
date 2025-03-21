@@ -6,8 +6,6 @@ public class FileManager {
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
-    public boolean activo = false;
-
     public FileManager(String filePath) throws FileNotFoundException {
         bufferedReader = new BufferedReader(new FileReader(filePath));
     }

@@ -5,13 +5,14 @@ public class Cipher {
     private char[] alphabet;
     private char[] newAlphabet;
 
-    public Cipher(char[] alphabet){
+    public Cipher(char[] alphabet, int shift){
         this.alphabet = alphabet;
+        creaNewAlphabet(shift);
     }
 
-    public String encrypt(String text, int shift){
+    public String encrypt(String text){
 
-        creaNewAlphabet(shift);
+
 
         char[] oldChars = text.toCharArray();
         char[] newChars = new char[text.length()];
@@ -26,9 +27,8 @@ public class Cipher {
         return String.valueOf(newChars);
     }
 
-    public String dencrypt(String encryptedText, int shift){
+    public String dencrypt(String encryptedText){
 
-        creaNewAlphabet(shift);
 
         char[] oldChars = encryptedText.toCharArray();
         char[] newChars = new char[encryptedText.length()];

@@ -8,7 +8,7 @@ public class MainApp {
 
 
     public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
-    public static final String RUTA = "C:\\Users\\jefes\\IdeaProjects\\Java_Project_Cyber_Caesar\\.idea\\src\\CG\\CaesarCipher\\";
+    public static final String RUTA = ".idea/src/CG/CaesarCipher/";
 
     public static final Menu menu = new Menu();
 
@@ -16,41 +16,48 @@ public class MainApp {
 
         // programa
 
-        while (true){
+        boolean salir = false;
+
+        while (!salir) {
             menu.menuPrincipal();
 
-            switch (menu.numSelector()){
+            switch (menu.numSelector()) {
                 case 1:
                     System.out.println("\n- CIFRAR -");
 
                     //Valida Key y File
 
-                    if(validarFileKey()){continue;};
+                    if (validarFileKey()) {
+                        break;
+                    }
 
                     //Prepara archivos para leer, (encriptar o desencriptar) y guardar
 
                     encryptOrDencrypt("encrypt");
 
-                    continue;
+                    break;
 
                 case 2:
 
                     System.out.println("\n- DESCIFRAR -");
 
-                    if(validarFileKey()){continue;};
+                    if (validarFileKey()) {
+                        break;
+                    }
 
                     //Prepara archivos para leer y guardar
 
                     encryptOrDencrypt("dencrypt");
 
 
-                    continue;
+                    break;
                 case 3:
                     menu.close();
+                    salir = true;
                     break;
                 default:
                     menu.noValido();
-                    continue;
+                    break;
             }
             break;
         }
@@ -59,8 +66,14 @@ public class MainApp {
 
     public static boolean validarFileKey() throws FileNotFoundException {
         Validator validator = new Validator();
-        if(!validator.file(RUTA + menu.pathFile())){   menu.pathFileInvalido(); return true;  }
-        if(!validator.key(menu.key(),ALPHABET)){    menu.keyInvalido(); return true;   }
+        if (!validator.file(RUTA + menu.pathFile())) {
+            menu.pathFileInvalido();
+            return true;
+        }
+        if (!validator.key(menu.key())) {
+            menu.keyInvalido();
+            return true;
+        }
         return false;
     }
 
@@ -71,25 +84,24 @@ public class MainApp {
 
         //Lee, encriptar o desencriptar y Guarda
 
-        Cipher cipher = new Cipher(ALPHABET);
+        Cipher cipher = new Cipher(ALPHABET, menu.key);
 
         String line;
-        while ((line = fileManager.readFile()) != null){
-            switch (process){
+        while ((line = fileManager.readFile()) != null) {
+            switch (process) {
                 case "encrypt":
-                    line = cipher.encrypt(line, menu.key);
+                    line = cipher.encrypt(line);
                     fileManager.writeFile(line);
-                    continue;
+                    break;
                 case "dencrypt":
-                    line = cipher.dencrypt(line, menu.key);
+                    line = cipher.dencrypt(line);
                     fileManager.writeFile(line);
-                    continue;
+                    break;
             }
 
         }
         fileManager.close();
     }
-
 
 
 }
