@@ -1,23 +1,19 @@
 package CG.CaesarCipher;
 
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class MainApp {
 
 
     public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
-    public static final String RUTA = ".idea/src/CG/CaesarCipher/";
+    public static final String RUTA = "src/CG/CaesarCipher/";
 
     public static final Menu menu = new Menu();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         // programa
 
         boolean salir = false;
-
         while (!salir) {
             menu.menuPrincipal();
 
@@ -59,12 +55,12 @@ public class MainApp {
                     menu.noValido();
                     break;
             }
-            break;
+
         }
 
     }
 
-    public static boolean validarFileKey() throws FileNotFoundException {
+    public static boolean validarFileKey() {
         Validator validator = new Validator();
         if (!validator.file(RUTA + menu.pathFile())) {
             menu.pathFileInvalido();
@@ -77,7 +73,7 @@ public class MainApp {
         return false;
     }
 
-    public static void encryptOrDencrypt(String process) throws IOException {
+    public static void encryptOrDencrypt(String process) {
         FileManager fileManager = new FileManager(RUTA + menu.pathFile);
         menu.saveFile();
         fileManager.saveFile(RUTA + menu.saveFile + ".txt");

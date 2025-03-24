@@ -6,26 +6,46 @@ public class FileManager {
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
-    public FileManager(String filePath) throws FileNotFoundException {
-        bufferedReader = new BufferedReader(new FileReader(filePath));
+    public FileManager(String filePath){
+        try {
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public String readFile() throws IOException {
-        return bufferedReader.readLine();
+    public String readFile() {
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void saveFile(String filePath) throws IOException {
-        bufferedWriter =
-                new BufferedWriter(new FileWriter(filePath));
+    public void saveFile(String filePath) {
+        try {
+            bufferedWriter =
+                    new BufferedWriter(new FileWriter(filePath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public  void  writeFile(String content) throws IOException {
-        bufferedWriter.write(content+"\n");
+    public  void  writeFile(String content)  {
+        try {
+            bufferedWriter.write(content+"\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void close() throws IOException {
-        bufferedReader.close();
-        bufferedWriter.close();
+    public void close() {
+        try {
+            bufferedReader.close();
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
