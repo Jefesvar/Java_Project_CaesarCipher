@@ -33,6 +33,7 @@ public class MainApp {
 
                     break;
 
+
                 case 2:
 
                     System.out.println("\n- DESCIFRAR -");

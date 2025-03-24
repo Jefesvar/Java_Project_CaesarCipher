@@ -22,8 +22,8 @@ public class FileManager {
         }
     }
 
-    public void prepareBufferWriter(String filePath) {
 
+    public void prepareBufferWriter(String filePath) {
         try {
             bufferedWriter =
                     new BufferedWriter(new FileWriter(filePath));

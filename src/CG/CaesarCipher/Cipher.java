@@ -5,6 +5,7 @@ public class Cipher {
     private final char[] alphabet;
     private char[] newAlphabet;
 
+
     public Cipher(char[] alphabet, int shift) {
         this.alphabet = alphabet;
         creaNewAlphabet(shift);
