@@ -5,7 +5,7 @@ public class MainApp {
 
 
     public static final char[] ALPHABET = "abcdefghijklmnopqrstvwxyz .,:?!".toCharArray();
-    public static final String RUTA = "src/CG/CaesarCipher/";
+    public static final String PATH = "src/CG/CaesarCipher/";
 
     public static final Menu menu = new Menu();
 
@@ -13,23 +13,23 @@ public class MainApp {
 
         // programa
 
-        boolean salir = false;
-        while (!salir) {
-            menu.menuPrincipal();
+        boolean quit = false;
+        while (!quit) {
+            menu.showPrincipalMenu();
 
-            switch (menu.numSelector()) {
+            switch (menu.requestPrincipalMenuSelection()) {
                 case 1:
                     System.out.println("\n- CIFRAR -");
 
                     //Valida Key y File
 
-                    if (validarFileKey()) {
+                    if (!fileAndKeyValidation()) {
                         break;
                     }
 
                     //Prepara archivos para leer, (encriptar o desencriptar) y guardar
 
-                    encryptOrDencrypt("encrypt");
+                    encryptOrDecrypt("encrypt");
 
                     break;
 
@@ -37,22 +37,22 @@ public class MainApp {
 
                     System.out.println("\n- DESCIFRAR -");
 
-                    if (validarFileKey()) {
+                    if (!fileAndKeyValidation()) {
                         break;
                     }
 
                     //Prepara archivos para leer y guardar
 
-                    encryptOrDencrypt("dencrypt");
+                    encryptOrDecrypt("dencrypt");
 
 
                     break;
                 case 3:
                     menu.close();
-                    salir = true;
+                    quit = true;
                     break;
                 default:
-                    menu.noValido();
+                    menu.answerToInvalidSelection();
                     break;
             }
 
@@ -60,30 +60,30 @@ public class MainApp {
 
     }
 
-    public static boolean validarFileKey() {
+    public static boolean fileAndKeyValidation() {
         Validator validator = new Validator();
-        if (!validator.file(RUTA + menu.pathFile())) {
-            menu.pathFileInvalido();
-            return true;
+        if (!validator.fileValidation(PATH + menu.requestPathFile())) {
+            menu.answerToInvalidPathFile();
+            return false;
         }
-        if (!validator.key(menu.key())) {
-            menu.keyInvalido();
-            return true;
+        if (!validator.keyValidation(menu.requestKey())) {
+            menu.answerToInvalidKey();
+            return false;
         }
-        return false;
+        return true;
     }
 
-    public static void encryptOrDencrypt(String process) {
-        FileManager fileManager = new FileManager(RUTA + menu.pathFile);
-        menu.saveFile();
-        fileManager.saveFile(RUTA + menu.saveFile + ".txt");
+    public static void encryptOrDecrypt(String process) {
+        FileManager fileManager = new FileManager(PATH + menu.pathFile);
+        menu.requestSaveFileName();
+        fileManager.prepareBufferWriter(PATH + menu.writeFile + ".txt");
 
         //Lee, encriptar o desencriptar y Guarda
 
         Cipher cipher = new Cipher(ALPHABET, menu.key);
 
         String line;
-        while ((line = fileManager.readFile()) != null) {
+        while ((line = fileManager.readLineFile()) != null) {
             switch (process) {
                 case "encrypt":
                     line = cipher.encrypt(line);

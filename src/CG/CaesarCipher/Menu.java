@@ -7,12 +7,12 @@ public class Menu {
 
     public int key = 0;
     public String pathFile = "";
-    public String saveFile;
+    public String writeFile;
 
     static PrintStream sysout = System.out;
     static Scanner scanner = new Scanner(System.in);
 
-    public void menuPrincipal() {
+    public void showPrincipalMenu() {
         sysout.println("\n- MENU PRINCIPAL -");
         sysout.println("Bienvenido al Cifrado Caesar");
         sysout.println("Elije una opción (1-3):");
@@ -21,39 +21,38 @@ public class Menu {
         sysout.println("3. Salir\n");
     }
 
-    public int numSelector(){
+    public int requestPrincipalMenuSelection(){
         sysout.print("Elige un numero: ");
         return scanner.nextInt();
     }
 
-    public String pathFile(){
+    public String requestPathFile(){
         sysout.print("De la ruta del archivo: ");
         pathFile = scanner.next();
         return pathFile;
     }
 
-    public String saveFile(){
+    public void requestSaveFileName(){
         sysout.println("\nSe guardara en FORMATO .txt");
         sysout.print("De SOLO el nombre para guardar: ");
-        saveFile = scanner.next();
-        return saveFile;
+        writeFile = scanner.next();
     }
 
-    public int key(){
+    public int requestKey(){
         sysout.print("De la llave/key (1-31): ");
         key =  scanner.nextInt();
         return key;
     }
 
-    public void pathFileInvalido(){
+    public void answerToInvalidPathFile(){
         sysout.println("ARCHIVO NO ENCONTRADO\n");
     }
 
-    public void keyInvalido(){
+    public void answerToInvalidKey(){
         sysout.println("LLAVE/KEY NO VALIDO\n");
     }
 
-    public void noValido(){
+    public void answerToInvalidSelection(){
         sysout.println("COMANDO NO VALIDO\n");
     }
 

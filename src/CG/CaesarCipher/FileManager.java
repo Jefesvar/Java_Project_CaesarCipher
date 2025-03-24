@@ -14,7 +14,7 @@ public class FileManager {
         }
     }
 
-    public String readFile() {
+    public String readLineFile() {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
@@ -22,7 +22,7 @@ public class FileManager {
         }
     }
 
-    public void saveFile(String filePath) {
+    public void prepareBufferWriter(String filePath) {
         try {
             bufferedWriter =
                     new BufferedWriter(new FileWriter(filePath));
