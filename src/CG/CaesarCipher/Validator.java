@@ -7,7 +7,6 @@ public class Validator {
         return 1 <= key && key <= 30;
     }
 
-
     public boolean fileValidation(String filePath) {
         File file = new File(filePath);
         return file.canRead() && file.canWrite();

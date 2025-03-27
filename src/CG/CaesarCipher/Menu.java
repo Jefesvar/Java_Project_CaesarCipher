@@ -1,6 +1,5 @@
 package CG.CaesarCipher;
 
-import javax.swing.plaf.PanelUI;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -34,8 +33,6 @@ public class Menu {
         return pathFile;
     }
 
-
-
     public void requestWriteFileName(){
         sysout.println("\nSe guardara en FORMATO .txt");
         sysout.print("De SOLO el nombre para guardar: ");
@@ -50,10 +47,10 @@ public class Menu {
 
     public boolean recuestContinueDecryptAndSave(){
 
-        String yesOrNo="";
+
         while (true){
             sysout.print("Continuar Desencriptando (Y/N): ");
-            yesOrNo = scanner.next();
+            String yesOrNo= scanner.next();
             if (yesOrNo.equalsIgnoreCase("n")){
                 return false;
             }
@@ -88,11 +85,6 @@ public class Menu {
 
     public void answerToInvalidSelection(){
         sysout.println("COMANDO NO VALIDO\n");
-    }
-
-
-    public void setWriteFileName(String writeFile){
-        this.writeFile = writeFile;
     }
 
     public void close(){

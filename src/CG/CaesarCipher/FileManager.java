@@ -26,7 +26,8 @@ public class FileManager {
         Stream<String> streamLines = bufferedReader.lines();
         return streamLines.toArray(String[]::new);
     }
-
+    //Para leer una linea, no se uso
+/*
     public String readLineFile() {
         try {
             return bufferedReader.readLine();
@@ -34,7 +35,7 @@ public class FileManager {
             throw new RuntimeException(e);
         }
     }
-
+*/
     public void arrayWriteFile(String[] arrayContent){
         for(String content:arrayContent){
             writeFileLine(content);
@@ -53,7 +54,6 @@ public class FileManager {
             throw new RuntimeException(e);
         }
     }
-
 
     public void close() {
         try {

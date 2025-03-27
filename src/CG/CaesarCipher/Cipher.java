@@ -35,7 +35,6 @@ public class Cipher {
         return String.valueOf(newChars);
     }
 
-
     public String[] arrayDecrypt(String[] arrayText){
         String[] arrayTextDecrypted = new String[arrayText.length];
         for(int i=0 ; i<arrayText.length ; i++) {
