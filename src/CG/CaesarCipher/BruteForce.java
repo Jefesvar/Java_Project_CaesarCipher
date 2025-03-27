@@ -4,6 +4,7 @@ public class BruteForce {
 
     public int bruteKey = -1;
 
+
     public BruteForce(String[] sampleLines, String[] diccionary,char[] alphabet){
         String[][] stringLinesDecrypted = new String[alphabet.length][];
         stringLinesDecrypted[0] = sampleLines;

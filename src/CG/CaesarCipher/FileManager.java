@@ -54,6 +54,7 @@ public class FileManager {
         }
     }
 
+
     public void close() {
         try {
             if (bufferedReader!=null) {
