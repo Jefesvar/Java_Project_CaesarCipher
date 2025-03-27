@@ -11,6 +11,14 @@ public class Cipher {
         creaNewAlphabet(shift);
     }
 
+    public String[] arrayEncrypt(String[] arrayText){
+        String[] arrayTextEncrypted = new String[arrayText.length];
+        for(int i=0 ; i<arrayText.length ; i++) {
+            arrayTextEncrypted[i] = encrypt(arrayText[i].toLowerCase());
+        }
+        return arrayTextEncrypted;
+    }
+
     public String encrypt(String text) {
 
 
@@ -27,7 +35,15 @@ public class Cipher {
         return String.valueOf(newChars);
     }
 
-    public String dencrypt(String encryptedText) {
+    public String[] arrayDecrypt(String[] arrayText){
+        String[] arrayTextDecrypted = new String[arrayText.length];
+        for(int i=0 ; i<arrayText.length ; i++) {
+            arrayTextDecrypted[i] = decrypt(arrayText[i].toLowerCase());
+        }
+        return arrayTextDecrypted;
+    }
+
+    public String decrypt(String encryptedText) {
 
 
         char[] oldChars = encryptedText.toCharArray();
